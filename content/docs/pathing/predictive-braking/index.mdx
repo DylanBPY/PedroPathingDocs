@@ -10,21 +10,20 @@ Instead of relying on a manually tuned derivative term to prevent overshoot, thi
 
 ### Key benefits:
 - **Faster:** maximizes deceleration, giving more time to accelerate and less time spent slowing down.
-
 - **Automatically tuned empirically:** eliminates overshoot and mis-tuning; only kP requires manual adjustment.
-
 - **Easier proportional tuning:** with braking behavior already known and maximized, kP can be set higher and adjusted more easily.
-
 - **Accurate, responsive, and strong:** higher kP reduces steady-state error, improves responsiveness, and provides stronger corrective and holding forces.
-
 - **Advanced movement capabilities:** treats braking distance as reaction time, enabling instant direction changes, sharp-angle turns at full speed, and natural centripetal correction for curves.
 
 ### Trade-offs
 - **Sharper stops:** can feel less smooth as the robot slides to a stop
-
 - **No acceleration constraints:** always uses maximum deceleration when braking
 
-# Back-EMF Braking & Active Control
+## Performance Highlights
+- Achieves near zero-power-brake stopping performance with active correction (~5× faster than coasting).
+- Example: 20 lb robot with 312 RPM wheels brakes from 65 in/s within 10 in; coasting from the same speed takes 50 in to stop.
+
+# Back-EMF Braking: Modeling and Control
 Zero-power brake mode locks the wheels using internal back-EMF, letting the robot’s momentum resist motion without drawing voltage. This achieves the theoretical maximum deceleration as the robot slides to a stop.
 
 In reality, braking is not perfectly linear. When the wheels lock, they slide across the floor, introducing nonlinear friction that must be accounted for to maximize deceleration.
@@ -36,21 +35,15 @@ During operation, the controller applies small reverse motor power to replicate 
 The controller measures real-world braking by letting the robot slide to a stop in zero-power brake mode and plotting velocity versus stopping distance. Braking behavior follows two components:
 
 - **Linear term:** caused by velocity-proportional braking forces
-
 - **Quadratic term:** caused by nonlinear friction from sliding at high speeds
 
 A standard derivative term models only linear deceleration, which is insufficient during high-speed braking due to wheel slippage. By measuring actual behavior instead of assuming it, the controller predicts slippage rather than trying to prevent it.
 
-### Back-EMF Braking Performance:
-Maximum deceleration: Achieves zero-power-brake stopping performance with active correction, typically ~5× faster than coasting.
-With 312RPM wheels and a ~20lb robot: brakes from 65in/s within 10in, whereas coasting from 65in/s takes 50in to stop (−40in/s²).
-
-### Effects of Robot Mass:
+## Effects of Robot Mass:
 - Lighter robots slide farther at high speeds, increasing the quadratic term while reducing the linear term due to less floor friction.
-
 - Heavier robots increase friction with the floor, resulting in stronger linear braking and shorter sliding distances.
 
-### Prerequisites
+# Prerequisites
 - Accurate velocity sensing required (e.g., dead wheels, IMU); drive encoders alone are insufficient due to wheel slip
 - Motors must support internal back-EMF braking
 
@@ -77,4 +70,4 @@ Thanks to the Pedro Pathing team for being interested and supporting this
 
 Thanks to Ashay from 19745 Turtle Walkers for being the first tester of the controller.
 
-Learn more: Ask @py.mon in the [Pedro Pathing Discord](https://discord.gg/xx48fsgtjB).
+## Learn more: Ask @py.mon in the [Pedro Pathing Discord](https://discord.gg/xx48fsgtjB).
