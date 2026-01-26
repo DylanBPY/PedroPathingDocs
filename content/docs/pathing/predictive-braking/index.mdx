@@ -41,16 +41,7 @@ A combined linear–quadratic braking model applies across all speeds.
 At low speeds, the linear term dominates, while at high speeds, the quadratic term dominates.
 
 ## Why not use a traditional Derivative term?
-A standard PID controller struggles with high-speed braking because it assumes linear deceleration, while the robot actually slides and experiences non-linear friction effects. Using only a derivative term forces you to lower the aggressiveness to prevent oscillation, which reduces both responsiveness and maximum speed. Or rely on creating a secondary PID depending on the error making one more aggressive and one less aggressive. But this gets complicated when tuning manually and doesnt fully satify the robot real behavior. By measuring actual behavior instead of assuming it, the controller predicts slippage rather than trying to prevent it.
-
-## Effects of Robot Mass:
-- Lighter robots slide farther at high speeds, increasing the quadratic term while reducing the linear term due to less floor friction.
-- Heavier robots increase friction with the floor, resulting in stronger linear braking and shorter sliding distances.
-
-# Prerequisites
-- Mecanum wheels (support for swerve and tank coming soon)
-- Accurate velocity sensing required (e.g., dead wheels, IMU); drive encoders alone are insufficient due to wheel slip
-- Motors must support internal back-EMF braking
+A standard PID controller struggles with high-speed braking because it assumes linear deceleration, while the robot actually slides and experiences non-linear friction effects. Using only a derivative term forces you to lower aggressiveness to prevent oscillation, which reduces both responsiveness and maximum speed. Another approach is to rely on a secondary PID based on the error, with one controller more aggressive and one less aggressive. However, this becomes complicated to tune manually and does not fully capture the robot’s real behavior. By measuring actual behavior instead of assuming it, the controller predicts slippage rather than trying to prevent it.
 
 # Common Questions
 ## Does maintaining traction with the ground result in faster deceleration?
@@ -62,13 +53,15 @@ Consider adding weight to lighter robots to increase their friction with the gro
 ## Why not use full-power reversal?
 Alternating between full forward (+1) and full reverse (−1) can cause voltage spikes that may burn out or reset the control hub. Instead, braking is applied with a small opposite voltage. Even a tiny voltage (e.g., −0.0001) locks the wheels like zero-power brake mode, using the motor’s momentum to stop without consuming significant energy. However, if the opposite voltage is too low, it won’t provide enough braking once the robot slows down where the motor’s momentum is no longer sufficient to brake.
 
-# Future Ideas:
-- When braking, most robots turn slightly due to uneven weight distribution. This could be modeled for and accounted for to allow the controller to predict instead of react.
-- If you want to ensure no wheel slip (e.g. for drive encoders), consider making a predictive coasting model. You can measure the coasting deceleration and model it similarly to this braking model. This will be much slower than braking, but it will ensure no wheel slip. This would also require an implementation of acceleration constraints to avoid wheel slippage when accelerating.
-- Acceleration constraints and deceleration constraints (useful for decelerating towards a wall).
-- Heading correction while tuning - lowers the required number of field tiles to tune on.
-- Predicting the next path
-- Support for swerve and tank by lowering translational priority or creating a dynamic lookahead projected from the robot's reaction time.
+# Future Improvements
+This algorithm has shown its advantages in speed and accuracy over manually tuning PIDFs.
+However, this algorithm is still being improved upon. More things that will be experimented with are: 
+- **Predictive Turning** - when braking, most robots turn slightly due to uneven weight distribution. This could be modeled for and accounted for to allow the controller to predict rather than react.
+- **Heading correction while tuning** - lowers the amount of space required to tune
+- **Acceleration constraints** and deceleration constraints (useful for decelerating towards a wall).
+- **Predicting the next path** - allows for instant changes in direction without coming to a complete stop
+- **Support for swerve and tank** by lowering translational priority or creating a dynamic lookahead projected from the robot's reaction time.
+- If you want to ensure no wheel slip (e.g., for drive encoders), consider making a predictive coasting model. You can measure the coasting deceleration and model it similarly to this braking model. This will be much slower than braking, but it will ensure no wheel slip. This would also require an implementation of acceleration constraints to avoid wheel slippage when accelerating.
 
 # Thanks
 Thanks to the Pedro Pathing team for being interested and supporting this
