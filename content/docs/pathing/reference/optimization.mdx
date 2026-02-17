@@ -1,0 +1,14 @@
+---
+title: Optimization
+---
+
+To optimize your robot, try these steps:
+
+### Drive PID Adjustments
+Increasing your Drive P value can often make your robot go faster, although after a certain threshold this likely won't help.
+
+### Global Deceleration Mode
+Toggle Global Deceleration mode in your PathChains with .setGlobalDeceleration(double brakingStrength). The lower the value you pass in, the later in your chain the robot will start decelerating. Optimize by seeing how low you can set this value without causing too much overshoot. This tends to help more on a PathChain-to-PathChain basis, instead of a single global value used everywhere.
+
+### Optimal Pathing
+Using the visualizer, try to optimize your robot's paths. Typically, shorter paths like lines tend to perform the best speed-wise. Beyond this, try experimenting with different heading interpolations. Make good use of features like piecewise heading interpolations, as for longer paths, a blend between linear and tangential can often be optimal.

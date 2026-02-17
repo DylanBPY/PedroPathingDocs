@@ -9,6 +9,9 @@
     "beziercurves",
     "drive-vector-algorithm",
     "callbacks",
-    "speed-control"
+    "speed-control",
+    "deceleration",
+    "optimization",
+    "overshoot"
   ]
 }
