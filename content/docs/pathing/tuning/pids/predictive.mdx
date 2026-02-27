@@ -12,7 +12,7 @@ Using this method, a world-record autonomous was achieved, and many other teams'
 
 Predictive Braking is a new, optional algorithm for following paths that replaces the old translational and drive PIDFs.
 
-The old PIDFs are still supported but predictive braking is much easier to tune because the algorithm automatically tunes and maximizes the deceleration speed and accuracy of your robot.
+The old PIDFs are still supported, but predictive braking is much easier to tune because the algorithm automatically tunes and maximizes the deceleration speed and accuracy of your robot.
 
 ### Predictive Braking Autonomous Example
 <iframe
@@ -52,7 +52,7 @@ If you want smoother or sooner deceleration, try experimenting with kP of 0.05 o
 4. Currently, it is recommended to turn **off centripetal** forces in auto, as predictive braking naturally accounts for this. This can be done with `.centripetalScaling(0)`.
 5. **Lower the parametric end constraint**. Set it to a value like 0.97 or 0.95. PIDFs often overshoot and hit the parametric end early, but predictive braking fully stops in time, delaying when actions can trigger. Lowering the constraint lets actions trigger sooner and speeds up overall execution.
 
-### After Tuning, the LineTest should look like this video
+### After tuning, the LineTest should look like this video
 <iframe
   width="560"
   height="315"
