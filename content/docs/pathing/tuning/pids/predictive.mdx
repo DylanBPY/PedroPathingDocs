@@ -9,11 +9,11 @@ Learn more about Predictive Braking: https://www.frozencodeftc.org/predictive-br
 # Why use Predictive Braking?
 Automatically tunes and maximizes the deceleration speed and accuracy of your robot.
 
-Using this method, a world-record autonomous was achieved, and many other teams' autos were also sped up, all while automatically tuning in a few minutes.
+Using this method, a world-record autonomous was achieved, and many other teams' autos were also sped up by **~15%**, all while automatically tuning in a few minutes.
 
 # Prerequisites
 - **Mecanum wheels** (support for swerve and tank coming soon)
-- **Odometry Wheels** (drive encoders alone are insufficient due to wheel slip)
+- **Accurate Localization** (drive encoders alone are insufficient due to wheel slip)
 - Works best with robots with a balanced center of mass and robots that do not lift off the ground or turn dramatically when braking. Do not worry if your robot does these things. This algorithm will still work. Just consider adding more weight to your robot.
 
 # Tuning
@@ -24,7 +24,7 @@ In FollowerConstants, add `.predictiveBrakingCoefficents(new PredictiveBrakingCo
 - `kLinear` represents braking distance proportional to velocity. This is caused by velocity-proportional braking distance such as back-EMF voltage and viscous friction. 
 3. Run LineTest and adjust kP to your liking. kP usually ranges from `0.05-0.3`. kP changes are harder to notice and have minimal effects due to kP accounting for predicted error. However, tune kP as high as possible to maximize holding strength and accuracy, without jittering the robot. 
 If you want smoother or sooner deceleration, try experimenting with kP of 0.05 or lower and increasing the kQuadratic term, as this will act more like a motion profile.
-4. Currently, it is recommended to turn **off centripetal** forces in auto, as predictive braking naturally accounts for this.
+4. Currently, it is recommended to turn **off centripetal** forces in auto, as predictive braking naturally accounts for this. This can be done with `.setCentripetalScaling(0)`.
 5. **Lower the parametric end constraint**. Set it to a value like 0.97 or 0.95. PIDFs often overshoot and hit the parametric end early, but predictive braking fully stops in time, delaying when actions can trigger. Lowering the constraint lets actions trigger sooner and speeds up overall execution.
 
 ## Effective Predictive Braking with Pathing
@@ -34,4 +34,6 @@ If you run a previously constructed autonomous, you will see that predictive bra
 In Pedro Pathing, it replaces the previous drive and translational PIDF controllers, using a single unified controller to regulate the robot’s position along the path.
 The system employs two controllers: one tangent to the path, where the error is the remaining distance, and one perpendicular to the path, which corrects lateral deviation.
 `PredictiveBrakingTuner` automatically measures the robot’s braking behavior and builds a model that enables accurate braking prediction and control.
+
+There is still more things being worked on to further improve this algrothim.
 
