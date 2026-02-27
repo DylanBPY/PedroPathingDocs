@@ -46,7 +46,7 @@ In FollowerConstants, add `.predictiveBrakingCoefficents(new PredictiveBrakingCo
 - `kLinear` represents braking distance roughly proportional to velocity. This is caused by velocity-proportional forces such as back-EMF voltage and viscous friction.
 3. Run LineTest and adjust kP to your liking. kP usually ranges from `0.05-0.3`. kP changes are harder to notice and have minimal effects due to kP accounting for predicted error. However, tune kP as high as possible to maximize holding strength and accuracy, without jittering the robot. 
 If you want smoother or sooner deceleration, try experimenting with kP of 0.05 or lower and increasing the kQuadratic term, as this will act more like a motion profile.
-4. Currently, it is recommended to turn **off centripetal** forces in auto, as predictive braking naturally accounts for this. This can be done with `.setCentripetalScaling(0)`.
+4. Currently, it is recommended to turn **off centripetal** forces in auto, as predictive braking naturally accounts for this. This can be done with `.centripetalScaling(0)`.
 5. **Lower the parametric end constraint**. Set it to a value like 0.97 or 0.95. PIDFs often overshoot and hit the parametric end early, but predictive braking fully stops in time, delaying when actions can trigger. Lowering the constraint lets actions trigger sooner and speeds up overall execution.
 
 ### After Tuning, the LineTest should look like this video
