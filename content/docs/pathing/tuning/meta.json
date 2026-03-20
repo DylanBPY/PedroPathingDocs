@@ -1,9 +1,11 @@
 {
   "pages": [
     "setup",
+    "swerve",
     "localization",
-    "automatic",
-    "pids",
+    "velocity",
+    "heading",
+    "drive-algorithm",
     "tests",
     "troubleshooting"
   ]
