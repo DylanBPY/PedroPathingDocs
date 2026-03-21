@@ -15,7 +15,7 @@ description: The translational PIDF ensures the robot follows a straight path wi
 ## Tuning Process
 Follow this video to help you tune the PIDF(s): 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qe2eo_Mhtes?si=DMqud3FSZ2j5AmPu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/qe2eo_Mhtes?si=DMqud3FSZ2j5AmPu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 1. Push the robot left or right at varying amounts and observe how the robot corrects back to its starting position. 
 2. Adjust the PIDF constants (`coefficientsTranslationalPIDF`) in the `Tuning`-> `Follower` -> `Constants` section of Panels Configurables to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, try lowering the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 

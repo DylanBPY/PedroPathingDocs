@@ -4,6 +4,7 @@ import {baseOptions} from '@/app/layout.config';
 import {source} from '@/lib/source';
 import Discord from "@/app/Discord";
 import {GithubInfo} from "fumadocs-ui/components/github-info";
+import {Footer} from '@/app/Footer';
 
 export default function Layout({children}: { children: ReactNode }) {
     return (
@@ -14,6 +15,7 @@ export default function Layout({children}: { children: ReactNode }) {
             )
         }, ...baseOptions.links!]}>
             {children}
+            <Footer />
         </DocsLayout>
     );
 }
