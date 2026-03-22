@@ -31,7 +31,7 @@ All further steps are for Predictive Braking users only.
 2. Run LineTest and adjust kP to your liking. kP usually ranges from `0.05-0.3`. kP changes are harder to notice and have minimal effects due to kP accounting for predicted error. However, tune kP as high as possible to maximize holding strength and accuracy, without jittering the robot. If you want smoother or sooner deceleration, try experimenting with kP of 0.05 or lower and increasing the kQuadratic term, as this will act more like a motion profile.
 4. Currently, it is recommended to turn **off centripetal** forces in auto, as predictive braking naturally accounts for this. This can be done by adding the following in FollowerConstants.
 ```java title="Constants.java"
-.forwardZeroPowerAcceleration(deceleration)
+.centripetalScaling(0)
 ```
 
 5. **Lower the parametric end constraint**. Set it to a value like 0.97 or 0.95. PIDFs often overshoot and hit the parametric end early, but predictive braking fully stops in time, delaying when actions can trigger. Lowering the constraint lets actions trigger sooner and speeds up overall execution.
@@ -39,8 +39,8 @@ All further steps are for Predictive Braking users only.
 At the end of tuning, you should have at least this in FollowerConstants.
 ```java title="Constants.java"
  public static FollowerConstants followerConstants = new FollowerConstants()
-     .headingPIDFCoefficients(new PIDFCoefficients(1.5, 0, 0.1, 0))
-     .predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(0.1, 0.04, 0.0016))
+     .headingPIDFCoefficients(new PIDFCoefficients(1.5, 0, 0.1, 0)) // tuned constants
+     .predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(0.1, 0.04, 0.0016)) // (kP, kLinear, kQuadratic)
      .centripetalScaling(0)
 ```
 
@@ -57,10 +57,3 @@ At the end of tuning, you should have at least this in FollowerConstants.
 
 ## Effective Predictive Braking with Pathing
 If you run a previously constructed autonomous, you will see that predictive braking effectively eliminates overshoot, but it may slow down your auto if you do not continue pathchains. This is because predictive braking comes to a complete stop when using individual paths. If you instead use pathchains wherever you do not need to fully stop, the robot will maintain its momentum. Future updates will allow smooth handling of sharp angles without stopping by predicting the next path automatically.
-
-# What does it replace?
-In Pedro Pathing, it replaces the previous drive and translational PIDF controllers, using a single unified controller to regulate the robot’s position along the path.
-The system employs two controllers: one tangent to the path, where the error is the remaining distance, and one perpendicular to the path, which corrects lateral deviation.
-`PredictiveBrakingTuner` automatically measures the robot’s braking behavior and builds a model that enables accurate braking prediction and control.
-
-There is still more things being worked on to further improve this algorithm.
