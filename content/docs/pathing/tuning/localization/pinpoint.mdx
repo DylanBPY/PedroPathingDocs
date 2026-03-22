@@ -37,9 +37,12 @@ return new FollowerBuilder(followerConstants, hardwareMap)
 
 ### Offsets
 
-You must also set your odometry pod offsets, which is where they are
-relative to your robot's center of rotation. You can use the diagram below
-to find them. **Offsets are in inches.**
+Offsets can be found **manually** or **automatically**:
+
+- **Automatic**: Use the [offsets tuner](/docs/pathing/tuning/localization/offsets-tuner)
+- **Manual**: Use the diagram below (offsets are in inches)
+
+Set your odometry pod offsets to define where they are relative to your robot's center of rotation.
 
 <img
   className="inline-block dark:hidden"
@@ -80,9 +83,9 @@ To reverse an encoder, add one of the following to `PinpointConstants`:
 .strafeEncoderDirection(Encoder.REVERSE)
 ```
 
-### Yaw Scaler
+### Yaw Scalar
 
-If you want to use a yaw scaler, you can set the yaw scalar by doing `yawScalar` in `PinpointConstants` and inputting
+If you want to use a yaw scalar, you can set the yaw scalar by doing `yawScalar` in `PinpointConstants` and inputting
 your yaw scalar.
 
 NOTE: The yaw scalar overrides calibration done by GoBilda, and it is recommended that you don't edit this unless

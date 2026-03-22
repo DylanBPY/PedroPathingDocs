@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "drive-encoder",
+    "otos",
+    "pinpoint",
+    "two-wheel",
+    "three-wheel",
+    "three-wheel-imu",
+    "offsets-tuner"
+  ]
+}
