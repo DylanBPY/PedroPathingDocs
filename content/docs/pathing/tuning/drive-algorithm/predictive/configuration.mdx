@@ -14,7 +14,8 @@ All further steps are for Predictive Braking users only.
 - Works best with robots with a balanced center of mass and robots that do not lift off the ground or turn dramatically when braking. Do not worry if your robot does these things. This algorithm will still work. Just consider adding more weight to your robot.
 
 # Tuning
-1. Run the Tuning.java OpMode -> Automatic -> PredictiveBrakingTuner. This will give you values for `kQuadratic` and `kLinear`. In FollowerConstants, add `.predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(kP, kLinear, kQuadratic))`. Insert the values given from the tuner into the method. Use a starting kP value around `0.1`.
+1. Make sure that your drivetrain is set via `.mecanumExDrivetrain` instead of `.mecanumDrivetrain` in the `Constants.createFollower` method
+2. Run the Tuning.java OpMode -> Automatic -> PredictiveBrakingTuner. This will give you values for `kQuadratic` and `kLinear`. In FollowerConstants, add `.predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(kP, kLinear, kQuadratic))`. Insert the values given from the tuner into the method. Use a starting kP value around `0.1`.
  - `kQuadratic` represents the braking distance proportional to velocity squared. This is caused by constant forces such as sliding friction.
  - `kLinear` represents braking distance roughly proportional to velocity. This is caused by velocity-proportional forces such as back-EMF voltage and viscous friction.
 
@@ -28,7 +29,7 @@ All further steps are for Predictive Braking users only.
   allowFullScreen
 ></iframe>
 
-2. Run LineTest and adjust kP to your liking. kP usually ranges from `0.05-0.3`. kP changes are harder to notice and have minimal effects due to kP accounting for predicted error. However, tune kP as high as possible to maximize holding strength and accuracy, without jittering the robot. If you want smoother or sooner deceleration, try experimenting with kP of 0.05 or lower and increasing the kQuadratic term, as this will act more like a motion profile.
+3. Run LineTest and adjust kP to your liking. kP usually ranges from `0.05-0.3`. kP changes are harder to notice and have minimal effects due to kP accounting for predicted error. However, tune kP as high as possible to maximize holding strength and accuracy, without jittering the robot. If you want smoother or sooner deceleration, try experimenting with kP of 0.05 or lower and increasing the kQuadratic term, as this will act more like a motion profile.
 4. Currently, it is recommended to turn **off centripetal** forces in auto, as predictive braking naturally accounts for this. This can be done by adding the following in FollowerConstants.
 ```java title="Constants.java"
 .centripetalScaling(0)
