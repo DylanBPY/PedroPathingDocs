@@ -9,13 +9,13 @@ import Link from "next/link";
 export function Provider({children}: { children: ReactNode }) {
     return (
         <>
-            <Banner variant="rainbow" id="migrate-to-pedro-2.0.0">
-                Pedro Pathing 2.0.0 has released! If you haven't already,&nbsp;
+            <Banner variant="rainbow" id="branding-change">
+                Our branding has changed!&nbsp;
                 <span className="prose">
-                    <Link className="link prose" href="/docs/pathing/migrating">
-                        migrate now
+                    <Link className="link prose" href="/docs/pathing/branding">
+                        Learn more
                     </Link>
-                </span>.
+                </span>
             </Banner>
             <RootProvider search={{SearchDialog}}>{children}</RootProvider>
         </>

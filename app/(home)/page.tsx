@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import TypedHeading from "./TypedHeading";
 
 export const metadata: Metadata = {
-  title: '',
+  title: 'Pedro Pathing',
   openGraph: {
     url: 'https://pedropathing.com',
     images: [
