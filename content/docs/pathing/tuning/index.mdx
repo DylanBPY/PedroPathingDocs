@@ -1,18 +1,20 @@
 ---
 title: Tuning
-description: Tuning Pedro Pathing
 ---
 
 import {Step, Steps} from "fumadocs-ui/components/steps";
 import Link from "next/link";
 
-Tuning Setup
-
 <Steps>
     <Step>
         <h3><Link href="/docs/pathing/tuning/setup">Setup</Link></h3>
 
-        In this step, you set constants such as your motor names and directions.
+        In this step, you set constants for your follower.
+    </Step>
+    <Step>
+        <h3><Link href="/docs/pathing/tuning/swerve">Swerve</Link></h3>
+
+        In this step, you set constants such as your motor names and directions for swerve (if using swerve).
     </Step>
     <Step>
         <h3>
@@ -22,25 +24,30 @@ Tuning Setup
         This allows for your robot to know its location on the field.
     </Step>
     <Step>
-        <h3><Link href="/docs/pathing/tuning/heading">Heading Tuner</Link></h3>
-
-        The heading PIDF corrects for the robot's heading while following the path.
-    </Step>
-    <Step>
         <h3><Link href="/docs/pathing/tuning/velocity">Velocity Tuners</Link></h3>
 
          Determines the forward vs lateral velocity of your robot.
     </Step>
+    <Step>
+        <h3><Link href="/docs/pathing/tuning/heading">Heading Tuner</Link></h3>
+
+        The heading PIDF corrects for the robot's heading while following the path.
+    </Step>
+    
 </Steps>
 
 After setting up, you have to decide which following algorithm you would like to use.
 
-1. New **predictive braking** which automatically tunes in a few minutes and has ~15% faster following. Only requires running the automatic PredictiveBrakingTuner and determining a P value.
+#### New **predictive braking** 
+Which automatically tunes in a few minutes and has faster but less customizable braking. Only requires running the automatic PredictiveBrakingTuner and determining a P value.
 Tuning process is here: <Link href="/docs/pathing/tuning/drive-algorithm/predictive/configuration">Tuning Predictive Braking</Link>
 
-## OR you can use
+### OR
 
-2. The former **PIDFs** of translational, drive, and centripetal which requires 3 manual tuners and two more automatic tuners. Allows for more control of the robot's behavior. These are the steps for tuning the PIDFs:
+#### **PIDFs** of translational, drive, and centripetal 
+Which requires 3 manual tuners and two more automatic tuners.   
+Allows for more control of the robot's behavior.   
+These are the steps for tuning the PIDFs:  
 
 <Steps>
     <Step>

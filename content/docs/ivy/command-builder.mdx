@@ -1,0 +1,46 @@
+---
+title: Command Builder
+---
+
+Ivy has **three different APIs** to create commands. While this may seem 
+overwhelming, you usually only will use one, and
+it's a matter of personal preference which to use. This page explains the Command Builder API. The other three APIs are
+explained on later pages.
+
+The first way to create commands is using the **Command Builder API**. To create a command, call `Command.build()`.
+Then, you can set the behavior of the command using the various methods on the builder.
+
+```java
+Command myFirstCommand = Command.build()
+    .setStart(() -> {
+        // executed on start
+    })
+    .setExecute(() -> {
+        // executed on execute
+    })
+    .setDone(() -> {
+        // return true to end the command
+    })
+    .setEnd(endCondition -> {
+        // executed on end
+    })
+    .requires(/* requirements */)
+    .setInterruptedBehavior(/* interrupted behavior */)
+    .setBlockedBehavior(/* blocked behavior */)
+    .setConflictBehavior(/* conflict behavior */)
+    .setPriority(/* priority */);
+```
+
+All methods are optional, so you're free to not call a method you don't need.
+
+For example, the arm command from the previous page could be written as follows:
+
+```java
+Command raiseArm = Command.build()
+    .setExecute(() -> {
+        armMotor.setPower(pidController.calculate(armMotor.getCurrentPosition()));
+    })
+    .setDone(() -> Math.abs(pidController.getTarget() - armMotor.getCurrentPosition()) < 10)
+    .setEnd(endCondition -> armMotor.setPower(0))
+    .requires(armMotor);
+```

@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "installation",
+    "what-are-commands",
+    "command-builder",
+    "command-compositions",
+    "utilities-and-decorators",
+    "composition-api",
+    "class-api",
+    "creating-opmodes",
+    "gamepad-bindings",
+    "example-repos"
+  ],
+  "root": true,
+  "title": "Ivy",
+  "description": "Control Flow"
+}

@@ -14,7 +14,6 @@ export const baseOptions: BaseLayoutProps = {
       <>
         <img className="size-10" src={`${process.env.BASE_PATH}/logo-duck.svg`}
           alt="Pedro Pathing Logo" />
-
         <span>Pedro Pathing</span>
       </>
     ),
