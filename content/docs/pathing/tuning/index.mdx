@@ -12,7 +12,7 @@ import Link from "next/link";
         In this step, you set constants for your follower.
     </Step>
     <Step>
-        <h3><Link href="/docs/pathing/tuning/swerve">Swerve</Link></h3>
+        <h3><Link href="/docs/pathing/tuning/swerve/swerve-setup">Swerve</Link></h3>
 
         In this step, you set constants such as your motor names and directions for swerve (if using swerve).
     </Step>
@@ -38,15 +38,17 @@ import Link from "next/link";
 
 After setting up, you have to decide which following algorithm you would like to use.
 
-#### New **predictive braking** 
+#### New **predictive braking**
+
 Which automatically tunes in a few minutes and has faster but less customizable braking. Only requires running the automatic PredictiveBrakingTuner and determining a P value.
 Tuning process is here: <Link href="/docs/pathing/tuning/drive-algorithm/predictive/configuration">Tuning Predictive Braking</Link>
 
 ### OR
 
-#### **PIDFs** of translational, drive, and centripetal 
-Which requires 3 manual tuners and two more automatic tuners.   
-Allows for more control of the robot's behavior.   
+#### **PIDFs** of translational, drive, and centripetal
+
+Which requires 3 manual tuners and two more automatic tuners.
+Allows for more control of the robot's behavior.
 These are the steps for tuning the PIDFs:  
 
 <Steps>

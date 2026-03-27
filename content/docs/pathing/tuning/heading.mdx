@@ -15,7 +15,7 @@ description: The heading PIDF corrects for the robot's heading while following t
 ## Tuning Process
 Follow this video to help you tune the PIDF(s): 
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/-7M8puRdnfA?si=3jmMW5fJTCw5hOr_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/-7M8puRdnfA?si=3jmMW5fJTCw5hOr_" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 1. Turn the robot left or right at varying amounts and observe how the robot turns back to its starting heading. 
 2. Adjust the PIDF constants (`coefficientsHeadingPIDF`) in the `Tuning`-> `Follower` -> `Constants` section of Panels Configurables to ensure that the robot can **accurately correct** back to its starting position with **minimal oscillations.** For example, if the robot has too many oscillations while correcting back to its starting position, lower the P value. On the other hand, if the robot corrects back to its starting location too slowly, increase the P value. 
