@@ -2,6 +2,7 @@
   "pages": [
     "installation",
     "what-are-commands",
+    "requirements-and-priorities",
     "command-builder",
     "command-compositions",
     "utilities-and-decorators",
