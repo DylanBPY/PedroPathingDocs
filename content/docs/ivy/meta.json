@@ -6,10 +6,9 @@
     "command-builder",
     "command-compositions",
     "utilities-and-decorators",
-    "composition-api",
     "class-api",
     "creating-opmodes",
-    "gamepad-bindings",
+    "pedro-commands",
     "example-repos"
   ],
   "root": true,
