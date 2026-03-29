@@ -29,7 +29,7 @@ commands, there are three types of behaviors that can occur:
   `InterruptedBehavior` is an enum with types `END` and `SUSPEND`. `END` means that each
   currently scheduled command will terminate and not be run again, while `SUSPEND` means
   that the currently scheduled command will be suspended and continue when the conflicting
-  command finishes. In both cases, end(true) will be called on each currently scheduled command.
+  command finishes. In both cases, `end()` will be called on each currently scheduled command.
   Defaults to `END`.
 - **Blocked Behavior**: If any currently scheduled command has a higher priority than the new,
   conflicting command, this determines what happens to the conflicting command. `BlockedBehavior`
@@ -47,7 +47,7 @@ commands, there are three types of behaviors that can occur:
   Defaults to `OVERRIDE`.
 
 Returning to our arm example, instead of creating separate commands for each of the scenarios,
-we can create a single command and modify it's priority to handle each scenario.
+we can create a single command and modify its priority to handle each scenario.
 
 Note that requirements are a completely optional feature, and you can use Ivy perfectly well
 without them. However, they are a powerful tool that can help you write simpler and safer code
