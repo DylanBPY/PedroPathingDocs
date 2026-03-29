@@ -7,7 +7,7 @@ completes three cycles of picking up and scoring, and showcases several differen
 also implemented, allowing the routine to advance based on time, position, or other custom conditions.
 
 ## Step One: Setting up imports and variables
-Ensure to include the required imports for the autonomous. **Note: Make sure the package statement aligns 
+Ensure to include the required imports for the autonomous. **Note: Make sure the package statement aligns
 with that of where your class files are actually located. Android Studio should automatically generate it when
 creating a class**
 
@@ -17,19 +17,20 @@ package org.firstinspires.ftc.teamcode.pedroPathing; // make sure this aligns wi
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.geometry.Pose;
+import com.pedropathing.ivy.Command;
+import com.pedropathing.ivy.Scheduler;
 import com.pedropathing.paths.Path;
 import com.pedropathing.paths.PathChain;
-import com.pedropathing.util.Timer;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import  com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
+import static com.pedropathing.ivy.pedro.PedroCommands.*;
+import static com.pedropathing.ivy.groups.Groups.*;
 
 @Autonomous(name = "Example Auto", group = "Examples")
 public class ExampleAuto extends OpMode {
 
     private Follower follower;
-    private Timer pathTimer, actionTimer, opmodeTimer;
-
-    private int pathState;
 ```
 
 ## Step Two: Initializing poses
@@ -107,13 +108,99 @@ public void buildPaths() {
 }
 ```
 
-## Step Four: Managing Path States 
-The switch is called continuously and runs the pathing, at certain points, it triggers the action state. The `pathState` variable in the switch statement
-will track the robot's movement throughout the autonomous. Every time the switch changes case, it will reset the timer. The followPath() function sets the follower to run 
-the specific path, but does NOT wait for it to finish before moving on. Rather, the robot will transition between path states based on a specified condition in the `if statement` 
-(known as a Finite State Machine, or FSM). 
+## Step Four: Building the Autonomous Routine
 
-Below is an example state manager with explanations on what each case does, and how to modify it to fit your own routine.
+We strongly recommend using [**Ivy**](/docs/ivy/installation), the official command library for Pedro Pathing,
+to build your autonomous routine, although an alternative is provided below.
+Ivy lets you describe your entire auto as a composition of follow commands and
+commands for your other subsystems, which is far more concise, flexible, and less error-prone than managing 
+states manually. To learn more about Ivy, check out the [Ivy documentation](/docs/ivy/installation).
+
+With Ivy, the entire autonomous logic is a single `sequential` composition. Each `follow` command
+doesn't complete until follower.isBusy() returns false, meaning you don't need to manually manage that.
+If you want to do commands in between paths, you can just add a command in between the follow commands.
+You can also use `parallel` compositions to run commands while following paths or to run other sets of commands
+together.
+
+```java title="ExampleAuto.java"
+public Command autoRoutine() {
+    return sequential(
+        follow(follower, scorePreload),
+        /* Score Preload Command*/
+        follow(follower, grabPickup1, true),
+        /* Grab Sample Command*/
+        follow(follower, scorePickup1, true),
+        /* Score Sample Command*/
+        follow(follower, grabPickup2, true),
+        /* Grab Sample Command*/
+        follow(follower, scorePickup2, true),
+        /* Score Sample Command*/
+        follow(follower, grabPickup3, true),
+        /* Grab Sample Command*/
+        follow(follower, scorePickup3, true)
+        /* Score Sample Command*/
+    );
+}
+```
+
+## Step Five: Init and Loop Methods
+The initialization phase sets up our paths and builds the auto command, while the loop runs the
+scheduler and updates the follower.
+
+```java title="ExampleAuto.java"
+    @Override
+    public void init() {
+        Scheduler.reset();
+        follower = Constants.createFollower(hardwareMap);
+        buildPaths();
+        follower.setStartingPose(startPose);
+    }
+
+    @Override
+    public void init_loop() {}
+
+    @Override
+    public void start() {
+        schedule(autoRoutine());
+    }
+
+    /** This is the main loop of the OpMode, it will run repeatedly after clicking "Play". **/
+    @Override
+    public void loop() {
+        follower.update();
+        Scheduler.execute();
+
+        // Feedback to Driver Hub for debugging
+        telemetry.addData("x", follower.getPose().getX());
+        telemetry.addData("y", follower.getPose().getY());
+        telemetry.addData("heading", follower.getPose().getHeading());
+        telemetry.update();
+    }
+
+    @Override
+    public void stop() {}
+```
+
+---
+
+## Alternative: Finite State Machine
+
+If you prefer not to use Ivy or any command base, you can manage path progression manually using a
+finite state machine (FSM). The `pathState` variable tracks where the robot is in the routine, and
+the switch statement transitions between states based on conditions like `!follower.isBusy()`.
+
+This approach requires additional imports and variables:
+
+```java title="ExampleAuto.java"
+import com.pedropathing.util.Timer;
+
+private Timer pathTimer, opmodeTimer;
+private int pathState;
+```
+
+Below is the state manager. The `followPath()` function tells the follower to run a path but does
+NOT wait for it to finish. Instead, the robot transitions between states based on conditions in
+each `if` statement.
 
 ```java title="ExampleAuto.java"
 public void autonomousPathUpdate() {
@@ -206,16 +293,32 @@ public void setPathState(int pState) {
 }
 ```
 
-
-## Step Five: Init and Loop Methods:
-The initialization phase sets up our paths and timers, while the loop ensures continuous updates during autonomous.
+The FSM init and loop methods look like this:
 
 ```java title="ExampleAuto.java"
-/** This is the main loop of the OpMode, it will run repeatedly after clicking "Play". **/
+    @Override
+    public void init() {
+        pathTimer = new Timer();
+        opmodeTimer = new Timer();
+        opmodeTimer.resetTimer();
+
+        follower = Constants.createFollower(hardwareMap);
+        buildPaths();
+        follower.setStartingPose(startPose);
+    }
+
+    @Override
+    public void init_loop() {}
+
+    @Override
+    public void start() {
+        opmodeTimer.resetTimer();
+        setPathState(0);
+    }
+
+    /** This is the main loop of the OpMode, it will run repeatedly after clicking "Play". **/
     @Override
     public void loop() {
-
-        // These loop the movements of the robot, these must be called continuously in order to work
         follower.update();
         autonomousPathUpdate();
 
@@ -227,33 +330,6 @@ The initialization phase sets up our paths and timers, while the loop ensures co
         telemetry.update();
     }
 
-    /** This method is called once at the init of the OpMode. **/
-    @Override
-    public void init() {
-        pathTimer = new Timer();
-        opmodeTimer = new Timer();
-        opmodeTimer.resetTimer();
-
-
-        follower = Constants.createFollower(hardwareMap);
-        buildPaths();
-        follower.setStartingPose(startPose);
-
-    }
-
-    /** This method is called continuously after Init while waiting for "play". **/
-    @Override
-    public void init_loop() {}
-
-    /** This method is called once at the start of the OpMode.
-     * It runs all the setup actions, including building paths and starting the path system **/
-    @Override
-    public void start() {
-        opmodeTimer.resetTimer();
-        setPathState(0);
-    }
-
-    /** We do not use this because everything should automatically disable **/
     @Override
     public void stop() {}
 ```
