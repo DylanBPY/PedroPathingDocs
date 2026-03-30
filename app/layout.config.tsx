@@ -40,7 +40,6 @@ export const baseOptions: BaseLayoutProps = {
     },
     {
       type: 'custom',
-      on: 'menu',
       children: <a className='flex flex-row gap-1.5 p-2 rounded-lg font-light text-sm text-fd-foreground/80 transition-colors items-center hover:text-fd-accent-foreground hover:bg-fd-accent '
         href="https://javadoc.io/doc/com.pedropathing" target="_blank" rel="noopener noreferrer">
         Javadoc
