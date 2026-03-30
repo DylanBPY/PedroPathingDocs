@@ -106,7 +106,8 @@ Repeat compositions are created using the `repeat` function:
 Command repeatCommand = repeat(command, 3); // repeats command 3 times
 ```
 
-You can also pass an `IntSupplier` instead of an `int` if you want to dynamically 
+You can also pass an `IntSupplier` (essentially the same as `Supplier<Integer>` explained on the previous page)
+instead of an `int` if you want to dynamically 
 determine the number of times the command should be repeated.
 
 ## Loop
