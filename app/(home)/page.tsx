@@ -45,8 +45,8 @@ follower.followPath(path);`;
       <div className="w-full max-w-4xl pt-16 pb-24">
         {/* Logo + tagline */}
         <div className="flex flex-col items-center">
-          <img className="h-44 md:h-56 dark:hidden mb-16" src={`${process.env.BASE_PATH}/logo-stacked-dark.svg`} alt="Pedro Pathing" />
-          <img className="h-44 md:h-56 hidden dark:block mb-16" src={`${process.env.BASE_PATH}/logo-stacked-light.svg`} alt="Pedro Pathing" />
+          <img className="h-[88px] md:h-28 dark:hidden mb-16" src={`${process.env.BASE_PATH}/logo-stacked-dark.svg`} alt="Pedro Pathing" />
+          <img className="h-[88px] md:h-28 hidden dark:block mb-16" src={`${process.env.BASE_PATH}/logo-stacked-light.svg`} alt="Pedro Pathing" />
         </div>
 
         {/* Pitch + code side by side */}
