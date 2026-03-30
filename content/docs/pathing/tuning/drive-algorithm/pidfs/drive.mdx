@@ -1,7 +1,10 @@
 ---
 title: Drive
-description: The Drive PIDF manages acceleration and braking along a path, ensuring smooth motion and minimizing overshoot.
 ---
+
+### Purpose
+
+The Drive PIDF manages acceleration and braking along a path, ensuring smooth motion and minimizing overshoot.
 
 ## Setup
 
@@ -66,6 +69,7 @@ The drive PID uses a Kalman filter to smooth error responses:
 
 The drive PID also has a filter such that the derivative term is a weighted average of the
   current derivative and the previous derivative.
+
 - The default time constant `T` for the
   drive filtered PID is 0.6, meaning that the derivative output is 0.6 times the previous derivative plus 0.4
   times the current derivative.
@@ -74,10 +78,12 @@ The drive PID also has a filter such that the derivative term is a weighted aver
 Feel free to experiment with these settings for optimal performance.
 
 ### Update Tuned values Into Your Code
+
 1. Once you are satisfied with your drivePIDF values, head over to the `Constants` file, and navigate to the `FollowerConstants` instantiation.
 2. Navigate to or add the line `.drivePIDFCoefficients(new FilteredPIDFCoefficients(0.1,0.0,0.01,0.6,0.0))`
 3. Update the parameters in `new FilteredPIDFCoefficients(P, I, D, T, F)` with the `drivePIDFCoefficients` values, `P, I, D, F`, you tuned on Panels.
 4. If you are using the dual PIDF system, **add the line** `.secondaryDrivePIDFCoefficients(new FilteredPIDFCoefficients(0.1,0,0.01,0.6,0.01))` and update the `secondaryDrivePIDF` values you tuned on Panels.
 
 ## Troubleshooting
+
 If you encounter a problem while tuning the Drive PIDF, check out the [troubleshooting page](/docs/pathing/troubleshooting).
