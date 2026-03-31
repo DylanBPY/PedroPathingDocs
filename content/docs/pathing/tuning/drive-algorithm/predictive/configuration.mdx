@@ -33,7 +33,7 @@ Also do not be worried if your robot lifts off the ground while braking. This is
 .centripetalScaling(0)
 ```
 
-4. **Lower the parametric end constraint**. Set it to a value like 0.97 or 0.95. PIDFs often overshoot and hit the parametric end early, but predictive braking fully stops in time, delaying when actions can trigger. Lowering the constraint lets actions trigger sooner and speeds up overall execution. However, do not set the parametric value very low (<0.9) or predictive braking will not work as intended because it will end the path before braking.
+4. **Lower the parametric end constraint**. Set it to a value like 0.97 or 0.95. PIDFs often overshoot and hit the parametric end early, but predictive braking fully stops in time, delaying when actions can trigger. Lowering the constraint lets actions trigger sooner and speeds up overall execution. However, do not set the parametric value very low (\<0.9) or predictive braking will not work as intended because it will end the path before braking.
 
 At the end of tuning, you should have at least this in FollowerConstants.
 ```java title="Constants.java"
