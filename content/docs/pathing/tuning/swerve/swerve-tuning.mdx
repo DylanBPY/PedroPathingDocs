@@ -6,6 +6,11 @@ description: Preliminary tuning for a (coaxial) swerve drivetrain up to getting 
 import { Callout } from 'fumadocs-ui/components/callout'
 
 ## Analog Encoder Min / Max Voltage
+<Callout title="Note" type="info">
+  For this opmode, and this one only, you will need to modify the `Tuning.java` file to match your encoder names to your config.
+  Modify the `encoderNames` array on line 1440.
+</Callout>
+
 To get the best performance out of your drivetrain, you need to be able to get the angle of your servos to high precision.
 Most coaxial swerve drivetrains in FTC use the analog encoders on their rotation servos to get the angle. In theory, the analog
 values should vary between 0 and 3.3V, but in practice the min and max voltages are often close but not exactly those.
@@ -13,10 +18,6 @@ values should vary between 0 and 3.3V, but in practice the min and max voltages 
 To get the most precision out of your pods, you want to get the actual minimum and maximum voltages of your encoders.
 To do this, run `Analog Min / Max Tuner` in the swerve section of the `Tuning` opmode. After you press start, slowly rotate each
 pod four to five full rotations. The min and max voltages of each pod should be printed to telemetry.
-<Callout title="Note" type="info">
-  For this opmode, and this one only, you will need to modify the `Tuning.java` file to match your encoder names to your config.
-  Modify the `encoderNames` array on line 1440.
-</Callout>
 
 Once you have the values for each pod, put them into your each of your pod creation methods in `Constants.java`.
 
