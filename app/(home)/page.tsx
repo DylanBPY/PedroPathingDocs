@@ -63,7 +63,11 @@ follower.followPath(path);`;
             <div className="hidden lg:flex flex-wrap gap-3 mt-8">
               <Link href="/docs/pathing"
                 className="flex items-center justify-center font-medium bg-fd-primary text-fd-primary-foreground hover:opacity-80 transition-opacity h-11 px-6 rounded-full">
-                Get Started
+                Pathing
+              </Link>
+              <Link href="/docs/ivy/installation"
+                className="flex items-center justify-center font-medium #ffc516 text-fd-primary-foreground hover:opacity-80 transition-opacity h-11 px-6 rounded-full">
+                Ivy
               </Link>
               <a href="https://github.com/Pedro-Pathing/PedroPathing" target="_blank" rel="noreferrer"
                 className="flex gap-2 items-center justify-center font-medium border border-fd-border hover:bg-fd-accent transition-colors h-11 px-6 rounded-full">
