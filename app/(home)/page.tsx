@@ -66,7 +66,8 @@ follower.followPath(path);`;
                 Pathing
               </Link>
               <Link href="/docs/ivy/installation"
-                className="flex items-center justify-center font-medium #ffc516 text-fd-primary-foreground hover:opacity-80 transition-opacity h-11 px-6 rounded-full">
+                className="flex items-center justify-center font-medium text-fd-primary-foreground hover:opacity-80 transition-opacity h-11 px-6 rounded-full"
+                style={{ backgroundColor: '#ffc516' }}>
                 Ivy
               </Link>
               <a href="https://github.com/Pedro-Pathing/PedroPathing" target="_blank" rel="noreferrer"

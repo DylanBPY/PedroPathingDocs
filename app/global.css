@@ -11,6 +11,7 @@
 .dark {
     --color-fd-background: #0f0f14;
     --color-fd-primary: #FE55A2;
+    --color-fd-yellow: #ffc516;
     --color-fd-primary-foreground: hsl(0, 0%, 98%);
     --color-fd-ring: #FE55A2;
 }
