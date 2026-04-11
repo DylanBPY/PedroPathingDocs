@@ -10,7 +10,7 @@ export default function Item({title, icon, iconClassName, description, href, lin
     href: string,
     link?: boolean,
 }) {
-    const Component = link ? "a" : Link;
+    const Component = link ? Link : "a";
 
     return (
         <Component href={href}

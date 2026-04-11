@@ -26,12 +26,12 @@ export default function PedroSelector() {
 
             <main className="p-8">
                 <Row>
-                    <Item href="/docs"
+                    <Item link href="/docs"
                           title="Pedro Pathing"
                           iconClassName="border-yellow-500/65 bg-yellow-500/10"
                           description="The most popular autonomous pathing library for FTC"
                           icon={<img src="/logo-duck.svg" alt="Pedro Pathing Logo" className="w-full"/>}/>
-                    <Item href="/docs/ivy"
+                    <Item link href="/docs/ivy"
                           title="Ivy"
                           iconClassName="border-pink-600/65 bg-pink-600/10"
                           description="A minimal command-based control flow framework"
