@@ -17,7 +17,7 @@ export function Provider({children}: { children: ReactNode }) {
                     </Link>
                 </span>
             </Banner>
-            <RootProvider search={{SearchDialog}}>{children}</RootProvider>
+            <RootProvider theme={{defaultTheme: 'dark'}} search={{SearchDialog}}>{children}</RootProvider>
         </>
     )
 
