@@ -1,6 +1,6 @@
 {
   "pages": [
-    "installation",
+    "index",
     "what-are-commands",
     "requirements-and-priorities",
     "command-builder",
@@ -13,5 +13,5 @@
   ],
   "root": true,
   "title": "Ivy",
-  "description": "Control Flow"
+  "description": "Control Flow Framework"
 }

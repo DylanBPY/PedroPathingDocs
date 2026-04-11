@@ -6,14 +6,15 @@ import {Banner} from "fumadocs-ui/components/banner";
 import Link from "next/link";
 import {Provider} from "@/app/provider";
 import 'katex/dist/katex.css';
+import {Metadata} from "next";
 
 const instrumentSans = Instrument_Sans({
     subsets: ['latin'],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
     icons: {
-        icon: `${process.env.BASE_PATH}/favicon.ico`
+        icon: `${process.env.BASE_PATH}/logo-duck.svg`
     }
 }
 
