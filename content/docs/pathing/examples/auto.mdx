@@ -110,11 +110,11 @@ public void buildPaths() {
 
 ## Step Four: Building the Autonomous Routine
 
-We strongly recommend using [**Ivy**](/docs/ivy/installation), the official command library for Pedro Pathing,
+We strongly recommend using [**Ivy**](/docs/ivy), the official command library for Pedro Pathing,
 to build your autonomous routine, although an alternative is provided below.
 Ivy lets you describe your entire auto as a composition of follow commands and
 commands for your other subsystems, which is far more concise, flexible, and less error-prone than managing 
-states manually. To learn more about Ivy, check out the [Ivy documentation](/docs/ivy/installation).
+states manually. To learn more about Ivy, check out the [Ivy documentation](/docs/ivy).
 
 With Ivy, the entire autonomous logic is a single `sequential` composition. Each `follow` command
 doesn't complete until follower.isBusy() returns false, meaning you don't need to manually manage that.

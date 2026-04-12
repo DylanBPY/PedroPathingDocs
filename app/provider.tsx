@@ -12,7 +12,7 @@ export function Provider({children}: { children: ReactNode }) {
             <Banner variant="rainbow" id="ivy-release">
                 Ivy is released!&nbsp;
                 <span className="prose">
-                    <Link className="link prose" href="/docs/ivy/installation">
+                    <Link className="link prose" href="/docs/ivy">
                         Learn more
                     </Link>
                 </span>
