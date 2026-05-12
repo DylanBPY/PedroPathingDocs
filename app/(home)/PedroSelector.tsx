@@ -74,7 +74,7 @@ export default function PedroSelector() {
                           iconClassName="border-gray-500/65 bg-gray-500/10"
                           description="View our source code on GitHub"
                           icon={<SiGithub className="text-gray-500 size-full"/>}/>
-                    <Item href="https://discord.gg/2GfC4qBP5s"
+                    <Item href="https://discord.gg/bqRdAjEmjk"
                           title="Discord"
                           iconClassName="border-blue-500/65 bg-blue-500/10"
                           description="Chat with us on Discord"
