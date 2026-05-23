@@ -29,7 +29,7 @@ import static com.pedropathing.ivy.pedro.PedroCommands.*;
 import static com.pedropathing.ivy.groups.Groups.*;
 
 @Autonomous(name = "Example Auto", group = "Examples")
-public class Example Auto extends LinearOpMode {
+public class ExampleAuto extends LinearOpMode {
 
     private Follower follower;
 ```
@@ -334,35 +334,4 @@ public void runOpMode {
         telemetry.update();
     }
 }
-
-@Override
-public void init() {
-    
-}
-
-@Override
-public void init_loop() {}
-
-@Override
-public void start() {
-    opmodeTimer.resetTimer();
-    setPathState(0);
-}
-
-/** This is the main loop of the OpMode, it will run repeatedly after clicking "Play". **/
-@Override
-public void loop() {
-    follower.update();
-    autonomousPathUpdate();
-
-    // Feedback to Driver Hub for debugging
-    telemetry.addData("path state", pathState);
-    telemetry.addData("x", follower.getPose().getX());
-    telemetry.addData("y", follower.getPose().getY());
-    telemetry.addData("heading", follower.getPose().getHeading());
-    telemetry.update();
-}
-
-@Override
-public void stop() {}
 ```
