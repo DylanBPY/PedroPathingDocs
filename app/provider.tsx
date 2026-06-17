@@ -1,6 +1,5 @@
 'use client';
 import {RootProvider} from 'fumadocs-ui/provider';
-// your custom dialog
 import SearchDialog from '@/components/search';
 import type {ReactNode} from 'react';
 import {Banner} from "fumadocs-ui/components/banner";
@@ -10,10 +9,9 @@ export function Provider({children}: { children: ReactNode }) {
     return (
         <>
             <Banner variant="rainbow" id="ivy-release">
-                Ivy is released!&nbsp;
                 <span className="prose">
-                    <Link className="link prose" href="/docs/ivy">
-                        Learn more
+                    <Link className="link prose" href="https://doi.org/10.5281/zenodo.20725318">
+                        View the Pedro Pathing White Paper
                     </Link>
                 </span>
             </Banner>
