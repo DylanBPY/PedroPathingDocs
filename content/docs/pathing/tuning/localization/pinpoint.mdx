@@ -5,9 +5,13 @@ description: A localizer that uses the goBILDA Pinpoint Odometry Computer
 
 <Callout title="Prerequisites" type="info">
   Ensure that two odometry pods are connected: one that is parallel to the length
-  of your chassis (forward) and another that is perpendicular to your chassis length (lateral). These should be plugged
-  into the pinpoint (forward goes to port x and lateral to port y). The pinpoint should be connected
-  to a REV Hub through an I2C cable (not to port 0 because the IMU is there).
+  of your chassis (forward) and another that is perpendicular to your chassis length (lateral). 
+</Callout>
+
+<Callout title="Common Mistakes" type="warning">
+  * Make sure the pinpoint is plugged into an I2C port **other than port 0**. This is because the Control Hub's built in IMU uses port 0.
+  * Make sure the pinpoint has the sticker side (with the ports) facing up.
+  * Make sure the forward pod is plugged into the x port on the pinpoint and the strafe pod is plugged into the y port. 
 </Callout>
 
 ## Setup

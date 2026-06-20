@@ -5,8 +5,15 @@ import {loadSlim} from "@tsparticles/slim";
 import particlesOptions from "@/app/(home)/particlesOptions";
 import Row from "@/app/(home)/Row";
 import Item from "@/app/(home)/Item";
-import {Book, Leaf, Moon, Package, SplinePointer, Sun} from "lucide-react";
-import {SiDiscord, SiGithub, SiInstagram, SiYoutube} from "@icons-pack/react-simple-icons";
+import {Book, Leaf, Moon, NewspaperIcon, Package, SplinePointer, Sun} from "lucide-react";
+import {
+    SiDiscord,
+    SiGithub,
+    SiInstagram, SiLetterboxd, SiPaperlessngxHex,
+    SiPaperspace,
+    SiPaperswithcode,
+    SiYoutube
+} from "@icons-pack/react-simple-icons";
 import {Footer} from "@/app/Footer";
 import {useTheme} from "next-themes";
 
@@ -74,28 +81,34 @@ export default function PedroSelector() {
                           iconClassName="border-gray-500/65 bg-gray-500/10"
                           description="View our source code on GitHub"
                           icon={<SiGithub className="text-gray-500 size-full"/>}/>
-                    <Item href="https://discord.gg/2GfC4qBP5s"
+                    <Item href="https://doi.org/10.5281/zenodo.20725318"
+                          title="White Paper"
+                          iconClassName="border-gray-500/65 bg-gray-500/10"
+                          description="View our white paper about Pedro’s path‑following algorithm."
+                          icon={<NewspaperIcon className="text-gray-500 size-full"/>}/>
+                    <Item href="https://discord.gg/bqRdAjEmjk"
                           title="Discord"
                           iconClassName="border-blue-500/65 bg-blue-500/10"
                           description="Chat with us on Discord"
                           icon={<SiDiscord className="text-blue-500 size-full"/>}/>
+
+                </Row>
+                <Row>
                     <Item href="https://youtube.com/@PedroPathing"
                           title="YouTube"
                           iconClassName="border-red-500/65 bg-red-500/10"
                           description="Watch our videos on YouTube"
                           icon={<SiYoutube className="text-red-500 size-full"/>}/>
-                </Row>
-                <Row>
                     <Item href="https://instagram.com/pedropathing/"
                           title="Instagram"
                           iconClassName="border-pink-500/65 bg-pink-500/10"
                           description="Follow us on Instagram"
                           icon={<SiInstagram className="text-pink-500 size-full"/>}/>
-                    <Item href="https://central.sonatype.com/namespace/com.pedropathing"
+                    {/* <Item href="https://central.sonatype.com/namespace/com.pedropathing"
                           title="Packages"
                           iconClassName="border-orange-500/65 bg-orange-500/10"
                           description="View our packages on Maven Central"
-                          icon={<Package className="text-orange-500 size-full"/>}/>
+                          icon={<Package className="text-orange-500 size-full"/>}/> */}
                     <Item href="https://javadoc.io/doc/com.pedropathing"
                           title="Javadoc"
                           iconClassName="border-pink-600/65 bg-pink-600/10"
