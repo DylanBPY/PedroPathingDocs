@@ -7,6 +7,7 @@
     "auto-usage",
     "teleop-usage",
     "follow-state",
-    "debugging"
+    "debugging",
+    "modifiers"
   ]
 }
